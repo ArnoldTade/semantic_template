@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --font-color: #fff;
+    --font-color-2: #c58d68;
+    --bg-color: #c99e82;
+    --bg-color-dark: #877f79;
+    --bg-color-2: #f5f5f5;
+}
+
+body {
+    padding-left: 250px !important;
+    padding-right: 40px !important;
+    padding-top: 40px !important;
+}
+
+.bg-grey {
+    background-color: var(--bg-color-2) !important;
+}
+
+.bg-orange {
+    background-color: var(--bg-color) !important;
+}
+
+.bg-orange-dark {
+    background-color: var(--bg-color-dark) !important;
+    color: var(--font-color) !important;
+
+    h4 {
+        .header {
+            color: var(--font-color) !important;
+        }
+
+    }
+}
+
+.sidebar {
+    h3 {
+        color: #fff !important;
+    }
+}
+
+.position-bottom {
+    bottom: 50;
+}
+
+.container-login {
+    .header {
+        text-align: center;
+
+    }
+}
+
+/* DASHBOARD PAGE */
+.container-summary {
+    width: 100%;
+    justify-content: center;
+
+    .column {
+        background-color: #e6e6e6 !important;
+        margin: 2px;
+    }
+}
+
+.container-shipping {
+    width: 100%;
+    justify-content: center;
+
+    .column {
+        margin: 2px;
+    }
+
+    .icon {
+        align-items: start !important;
+    }
+}
+
+.container-bar-graph {
+    width: 100%;
+    justify-content: center !important;
+
+    .column {
+        margin: 2px;
+    }
+}
+
+/* TABLE PAGE */
+.container-table {
+    width: 100%;
+    justify-content: center !important;
+
+    .column {
+        margin: 2px;
+    }
+}

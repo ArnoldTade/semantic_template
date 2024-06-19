@@ -1,0 +1,103 @@
+{% include '_header.html' %}
+{% block content %}
+<div class="ui container container-dashboard">
+    <div class="ui two column grid">
+        <!--Column Summary-->
+        <div class="column col-summary">
+            <div class="ui container segment padded grey">
+                <h5 class="ui header"><i class="list alternate outline icon grey"></i>Summary</h5>
+
+                <div class="ui two column grid container container-summary">
+                    <div class="seven wide column">
+                        <h3 class="ui header">
+                           100
+                            <div class="sub header"><i class="users icon"></i>New Customers</div>
+                        </h3>
+                    </div>
+                    
+                    <div class="seven wide column">
+                        <h3 class="ui header">
+                            25
+                            <div class="sub header"><i class="boxes icon"></i> New Orders</div>
+                        </h3>
+                    </div>
+                    <div class="seven wide column">
+                        <h3 class="ui header">
+                            ₱ 1,200
+                            <div class="sub header"><i class="money bill alternate outline icon"></i>Avg Sale</div>
+                        </h3>
+                    </div>
+                    <div class="seven wide column">
+                        <h3 class="ui header">
+                            ₱ 50,000
+                            <div class="sub header"><i class="chart bar icon"></i>Gross Profit</div>
+                        </h3>
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+        <!--Column Shipping Status-->
+        <div class="column col-shipping">
+            <div class="ui container segment padded grey">
+                <h5 class="ui header"><i class="box icon grey"></i>Shipping Status</h5>
+
+                <div class="ui three column grid container padded container-shipping">
+                    <div class="seven wide column bg-orange-dark">
+                        <h4 class="ui header right aligned">
+                            <div class="sub header "><i class="hourglass icon"></i> 100</div>
+                            <div class="sub header ">Awaiting Pickup</div>
+                        </h4>
+                    </div>
+
+                    <div class="seven wide column bg-orange-dark">
+                        <h4 class="ui header right aligned">
+                            <div class="sub header "><i class="share icon"></i> 100</div>
+                            <div class="sub header">Redelivered Orders</div>
+                         </h4>
+                    </div>
+                    <div class="seven wide column bg-orange-dark">
+                        <h4 class="ui header right aligned">
+                            <div class="sub header "><i class="frown icon"></i> 100</div>
+                            <div class="sub header">Failed Delivery</div>
+                         </h4>
+                    </div>
+                    <div class="seven wide column bg-orange-dark right aligned">
+                        <h4 class="ui header">
+                            <div class="sub header "><i class="shipping fast icon"></i> 100</div>
+                            <div class="sub header">Ongoing Delivery</div>
+                        </h4>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--Column Bar Graph-->
+        <div class="column col-bar-graph">
+            <div class="ui container segment padded grey container-bar-graph">
+                <h5 class="ui header"><i class="chart bar icon grey"></i>Bar Graph</h5>
+                <div class="ui grid container">
+                    <div class="ui sixteen wide column bg-grey">
+                        <canvas id="barChart" width="500" height="250"></canvas>
+                    </div>
+                </div>
+                
+              
+            </div>
+        </div>
+        <!--Column Pie Graph-->
+        <div class="column col-pi-graph">
+            <div class="ui container segment padded grey">
+                <h5 class="ui header"><i class="chart line icon grey"></i>Line Graph</h5>
+                <div class="ui grid container">
+                    <div class=" sixteen wide column bg-grey">
+                        <canvas id="pieChart" width="500" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}
+{% include '_footer.html' %}
