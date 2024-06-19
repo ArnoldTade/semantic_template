@@ -1,17 +1,101 @@
 {% include '_header.html' %}
 {% block content %}
-    <div class="ui container container-table">
-        <h1 class="ui header">Table</h1>
-        <div class="ui two column grid">
-            <div class="five wide column bg-grey"></div>
-            <div class="five wide column bg-grey"></div>
-            <div class="five wide column bg-grey"></div>
-        </div>
 
-        <div class="ui column grid">
-            <div class="column bg-grey"></div>
+  <div class="ui segment container container-table">
+
+    <div class="ui grid">
+      <div class="four column row">
+        <div class="left floated column">
+          <h3 class="ui header left floated">
+            Employees
+              <div class="sub header">List of Employees</div>
+          </h3>
         </div>
+        <div class="right floated column">
+          <button class="ui primary small right floated button">
+            <i class="icon user"></i>
+            Add Employee
+          </button>
+        </div>
+      </div>
     </div>
-   
+
+      <div class="ui two column grid">
+          <div class="five wide column bg-grey">
+              <div class="ui tiny horizontal statistics">
+                  <div class="statistic">
+                    <div class="value ">
+                        904
+                    </div>
+                    <div class="label">
+                      Total Employees
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="five wide column bg-grey">
+              <div class="ui tiny horizontal statistics">
+                  <div class="statistic">
+                    <div class="value">
+                      890
+                    </div>
+                    <div class="label">
+                      Active Employees
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="five wide column bg-grey">
+              <div class="ui tiny horizontal statistics">
+                  <div class="statistic">
+                    <div class="value">
+                      80%
+                    </div>
+                    <div class="label">
+                      Progress
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--COLUMN TABLE-->
+      <div class="ui column grid">
+        <div class="column ">
+          <table class="ui grey celled table">
+            <thead>
+              <tr>
+                <th class="">Name</th>
+                <th class="">Status</th>
+                <th class="">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+                <td>Jill</td>
+                <td class="negative">Denied</td>
+                <td>None</td>
+              </tr><tr>
+                <td>John</td>
+                <td>No Action</td>
+                <td>None</td>
+              </tr><tr>
+                <td>Jamie</td>
+                <td class="positive">Approved</td>
+                <td class="warning">Requires call</td>
+              </tr></tbody>
+            <tfoot>
+              <tr><th>3 People</th>
+              <th>2 Approved</th>
+              <th></th>
+            </tr></tfoot>
+          </table>
+        </div>
+      </div>
+      
+  </div>
+ 
 {% endblock  %}
 {% include '_footer.html' %}

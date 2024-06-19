@@ -32,3 +32,11 @@ def table(request):
         "title": title,
     }
     return render(request, "table.html", context)
+
+
+def scan(request):
+    title = "Scan"
+    context = {
+        "title": title,
+    }
+    return render(request, "scan.html", context)
