@@ -1,6 +1,8 @@
 {% include '_header.html' %}
 {% block content %}
 {% load static %}
+
+
   <div class="ui segment container container-table">
       <!--HEADER TABLE-->
     <div class="ui grid">
@@ -20,45 +22,31 @@
       </div>
     </div>
       <!--SUMMARY TABLE-->
-    <div class="ui two column grid">
-        <div class="five wide column bg-orange-light">
-            <div class="ui tiny horizontal statistics">
-                <div class="statistic">
-                  <div class="value ">
-                      904
-                  </div>
-                  <div class="label">
-                    Total Employees
-                  </div>
-                </div>
-            </div>
+    <div class="ui grid">
+      <div class="ui mini blue statistic">
+        <div class="value">
+          904
         </div>
-
-        <div class="five wide column bg-green">
-            <div class="ui tiny horizontal statistics">
-                <div class="statistic">
-                  <div class="value">
-                    890
-                  </div>
-                  <div class="label">
-                    Active Employees
-                  </div>
-                </div>
-            </div>
+        <div class="label">
+          Total Employees
         </div>
-
-        <div class="five wide column bg-yellow">
-            <div class="ui tiny horizontal statistics">
-                <div class="statistic">
-                  <div class="value">
-                    80%
-                  </div>
-                  <div class="label">
-                    Progress
-                  </div>
-                </div>
-            </div>
+      </div>
+      <div class="ui mini green statistic ">
+        <div class="value">
+          890
         </div>
+        <div class="label">
+          Active Employees
+        </div>
+      </div>
+      <div class="ui mini red statistic">
+        <div class="value">
+          14
+        </div>
+        <div class="label">
+          Inactive Employees
+        </div>
+      </div>
     </div>
       <!--COLUMN TABLE-->
     <div class="ui column grid">
@@ -156,6 +144,7 @@
             </tr>
 
           </tbody>
+          
           <tfoot>
             <tr><th>3 People</th>
             <th>2 Approved</th>
@@ -164,7 +153,6 @@
         </table>
       </div>
     </div>
-    
   </div>
  
   

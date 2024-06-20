@@ -40,3 +40,11 @@ def scan(request):
         "title": title,
     }
     return render(request, "scan.html", context)
+
+
+def attendance(request):
+    title = "Attendance"
+    context = {
+        "title": title,
+    }
+    return render(request, "attendance.html", context)

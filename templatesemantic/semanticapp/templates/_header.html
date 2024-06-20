@@ -35,10 +35,15 @@
         <i class="block layout icon"></i>
         Dashboard
       </a>
-      <a  href="{% url 'table' %}" class="item">
+      <div class="item">
         <i class="table icon"></i>
-        Table
-      </a>
+        <div class="header">Table</div> 
+        <div class="menu">
+          <a href="{% url 'table' %}" class="item">Employees Table</a>
+          <a href="{% url 'attendance' %}" class="item">Attendance</a>
+        </div>
+      </div>
+     
       <a  href="{% url 'scan' %}" class="item">
         <i class="qrcode icon"></i>
         Scan 
