@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jquery-tablesort": "^0.0.11",
+    "semantic-ui-icon": "^2.5.0"
+  }
+}

@@ -47,3 +47,4 @@ let pieChart = new Chart(pie, {
         }
     }
 });
+
