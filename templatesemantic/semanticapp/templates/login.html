@@ -33,9 +33,18 @@
           
     <div class="ui raised very padded text container segment container-login">
         <h2 class="ui header">Login</h2>
+        {% if messages %}
+            <div class="messages z-3 position-absolute">
+                {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
         <form method="POST" class="ui form">
           {% csrf_token %}
-            <div class="field">
+          <!-- <div class="field">
               <label>Username</label>
               <input type="text" name="Username" placeholder="Username" required>
             </div>
@@ -43,7 +52,8 @@
               <label>Password</label>
               <input type="password" name="Password" placeholder="Password" required>
             </div>
-          
+          --> 
+          {{ loginform.as_p }}
             <button class="ui bg-orange-dark fluid button" type="submit">Login</button>
         </form>
     </div>
