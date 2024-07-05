@@ -5,10 +5,9 @@ from .forms import *
 from django.contrib import messages
 
 
-# Create your views here.
 def user_login(request):
     if request.user.is_authenticated:
-        return redirect("home")
+        return redirect("dashboard")
     if request.method == "POST":
         userform = LoginForm(request.POST)
         if userform.is_valid():
@@ -17,9 +16,9 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("home")
+                return redirect("dashboard")
             else:
-                messages.warning(request, "Wrong username or password")
+                messages.error(request, "Wrong username or password")
     loginform = LoginForm()
 
     title = "Login"
@@ -52,9 +51,21 @@ def dashboard(request):
 
 
 def table(request):
+    if request.method == "POST":
+        employeeForm = EmployeeForm(request.POST, request.FILES)
+        if employeeForm.is_valid():
+            employeeForm.save()
+            messages.success(request, "Employee Added!")
+            return redirect("table")
+        else:
+            messages.warning(request, employeeForm.errors)
+
+    else:
+        employeeForm = EmployeeForm()
     title = "Table"
     context = {
         "title": title,
+        "employeeForm": employeeForm,
     }
     return render(request, "table.html", context)
 

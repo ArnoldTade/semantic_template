@@ -15,8 +15,15 @@
         <script>
             $(document).ready(function () {
                 $('.ui.sortable.table').tablesort();
-
             });
+
+            $(document).ready(function() {
+                $('#addEmployee').click(function() {
+                  $('.ui.small.modal')
+                  .modal('setting', 'closable', false)
+                  .modal('show');
+                });
+              });
         </script>
     </body>
 </html>

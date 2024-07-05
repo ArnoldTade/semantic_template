@@ -2,6 +2,15 @@
 {% block content %}
 {% load static %}
 
+{% if messages %}
+<div class="messages z-3 position-absolute">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 
   <div class="ui segment container container-table">
       <!--HEADER TABLE-->
@@ -14,7 +23,7 @@
           </h3>
         </div>
         <div class="right floated column">
-          <button class="ui bg-orange-dark small right floated button">
+          <button class="ui bg-orange-dark small right floated button" id="addEmployee">
             <i class="icon user"></i>
             Add Employee
           </button>
@@ -154,7 +163,32 @@
       </div>
     </div>
   </div>
- 
-  
+
+ <!-- MODAL -->
+  <div class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Add new employee
+    </div>
+    <div class="image content">
+      <div class="description">
+          <form method="POST" class="ui form">
+            {% csrf_token %}
+            {{employeeForm.as_p}}
+            
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="ui black deny button">
+        Close
+      </button>
+      <button type="submit" class="ui positive right labeled icon button">
+        Save
+        <i class="checkmark icon"></i>
+      </button >
+    </div>
+  </form>
+  </div>
 {% endblock  %}
 {% include '_footer.html' %}
