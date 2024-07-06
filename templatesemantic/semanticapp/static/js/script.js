@@ -1,3 +1,25 @@
+
+// ADD EMPLOYEE FORM //
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('employeeForm');
+    const saveButton = document.getElementById('addEmployeeForm');
+
+    const checkFormValidity = () => {
+        let isValid = true;
+        Array.from(form.elements).forEach(element => {
+            if ((element.tagName === 'INPUT' || element.tagName === 'SELECT' || element.tagName === 'TEXTAREA') && element.type !== 'hidden') {
+                if (!element.value.trim()) {
+                    isValid = false;
+                }
+            }
+        });
+        saveButton.disabled = !isValid;
+    };
+
+    form.addEventListener('input', checkFormValidity);
+    checkFormValidity();
+});
+
 // Summary Bar Graph
 let ctx = document.getElementById("barChart").getContext("2d");
 let chart = new Chart(ctx, {
@@ -47,4 +69,3 @@ let pieChart = new Chart(pie, {
         }
     }
 });
-

@@ -34,7 +34,7 @@
     <div class="ui grid">
       <div class="ui mini blue statistic">
         <div class="value">
-          904
+          {{total_employees}}
         </div>
         <div class="label">
           Total Employees
@@ -42,7 +42,7 @@
       </div>
       <div class="ui mini green statistic ">
         <div class="value">
-          890
+         {{active_employee}}
         </div>
         <div class="label">
           Active Employees
@@ -50,7 +50,7 @@
       </div>
       <div class="ui mini red statistic">
         <div class="value">
-          14
+         {{inactive_employee}}
         </div>
         <div class="label">
           Inactive Employees
@@ -69,96 +69,29 @@
             </tr>
           </thead>
           <tbody>
-            
+            {% for employee in employees %}
             <tr>
               <td>
                 <h4 class="ui image header">
                   <img src="{% static '/img/semantic.png' %}" class="ui mini rounded image">
                   <div class="content">
-                    Lena
-                    <div class="sub header">Human Resources
-                  </div>
-                </div>
-                </h4>
-              </td>
-              <td class="negative">Inactive</td>
-
-              <td>
-                <div class="ui small basic icon buttons">
-                  <button class="ui button"><i class="pencil alternate icon"></i></button>
-                  <button class="ui button"><i class="trash icon"></i></button>
-                </div>
-              </td>
-
-            </tr>
-
-            <tr>
-              <td>
-                <h4 class="ui image header">
-                  <img src="{% static '/img/semantic.png' %}" class="ui mini rounded image">
-                  <div class="content">
-                    Matthew
+                    {{ employee.lastName }}, {{ employee.firstName }}, {{ employee.middleName|slice:":1" }}.
                     <div class="sub header">Design
                   </div>
                 </div>
                 </h4>
               </td>
-              <td class="positive">Active</td>
+              <td class={% if employee.status == "Active" %} "positive" {% else %} "negative" {% endif %} >{{ employee.status }}</td>
               <td>
                 <div class="ui small basic icon buttons">
-                  <button class="ui button"><i class="pencil alternate icon"></i></button>
-                  <button class="ui button"><i class="trash icon"></i></button>
+                  <button class="ui button"><i class="eye icon"></i></button>
+                  <button class="ui  button"><i class="trash icon"></i></button>
                 </div>
               </td>
             </tr>
-
-            <tr>
-              <td>
-                <h4 class="ui image header">
-                  <img src="{% static '/img/semantic.png' %}" class="ui mini rounded image">
-                  <div class="content">
-                    Lindsay
-                    <div class="sub header">Entertainment
-                  </div>
-                </div>
-                </h4>
-              </td>
-              <td class="positive">Active</td>
-              <td>
-                <div class="ui small basic icon buttons">
-                  <button class="ui button"><i class="pencil alternate icon"></i></button>
-                  <button class="ui button"><i class="trash icon"></i></button>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <h4 class="ui image header">
-                  <img src="{% static '/img/semantic.png' %}" class="ui mini rounded image">
-                  <div class="content">
-                    Mark
-                    <div class="sub header">Project Manager
-                  </div>
-                </div>
-                </h4>
-              </td>
-              <td class="positive">Active</td>
-              <td>
-                <div class="ui small basic icon buttons">
-                  <button class="ui button"><i class="pencil alternate icon"></i></button>
-                  <button class="ui button"><i class="trash icon"></i></button>
-                </div>
-              </td>
-            </tr>
+            {% endfor %}
 
           </tbody>
-          
-          <tfoot>
-            <tr><th>3 People</th>
-            <th>2 Approved</th>
-            <th></th>
-          </tr></tfoot>
         </table>
       </div>
     </div>
@@ -172,23 +105,31 @@
     </div>
     <div class="image content">
       <div class="description">
-          <form method="POST" class="ui form">
+          <form method="POST" class="ui form" id="employeeForm">
             {% csrf_token %}
-            {{employeeForm.as_p}}
-            
+            <div class="form-grid">
+              {% for field in employeeForm %}
+                  <div class="form-field">
+                      {{ field.label_tag }}
+                      {{ field }}
+                      {{ field.errors }}
+                  </div>
+              {% endfor %}
+          </div>
       </div>
     </div>
 
     <div class="actions">
-      <button type="button" class="ui black deny button">
+      <button type="button" class="ui bg-orange-dark deny button">
         Close
       </button>
-      <button type="submit" class="ui positive right labeled icon button">
+      <button type="submit" class="ui positive right labeled icon button" id="addEmployeeForm" disabled >
         Save
         <i class="checkmark icon"></i>
       </button >
     </div>
-  </form>
+    </form>
   </div>
 {% endblock  %}
+
 {% include '_footer.html' %}

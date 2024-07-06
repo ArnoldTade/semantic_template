@@ -51,6 +51,11 @@ def dashboard(request):
 
 
 def table(request):
+    employees = Employee.objects.all()
+    total_employees = employees.count()
+    active_employee = employees.filter(status="Active").count()
+    inactive_employee = employees.filter(status="Inactive").count()
+
     if request.method == "POST":
         employeeForm = EmployeeForm(request.POST, request.FILES)
         if employeeForm.is_valid():
@@ -62,10 +67,13 @@ def table(request):
 
     else:
         employeeForm = EmployeeForm()
-    title = "Table"
     context = {
-        "title": title,
+        "title": "Table",
         "employeeForm": employeeForm,
+        "employees": employees,
+        "total_employees": total_employees,
+        "active_employee": active_employee,
+        "inactive_employee": inactive_employee,
     }
     return render(request, "table.html", context)
 
