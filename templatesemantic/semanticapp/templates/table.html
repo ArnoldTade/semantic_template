@@ -73,7 +73,7 @@
             <tr>
               <td>
                 <h4 class="ui image header">
-                  <img src="{% static '/img/semantic.png' %}" class="ui mini rounded image">
+                  <img src="{{ employee.profile_picture.url }}" class="ui mini rounded image">
                   <div class="content">
                     {{ employee.lastName }}, {{ employee.firstName }}, {{ employee.middleName|slice:":1" }}.
                     <div class="sub header">Design
@@ -105,14 +105,18 @@
     </div>
     <div class="image content">
       <div class="description">
-          <form method="POST" class="ui form" id="employeeForm">
+          <form method="POST" class="ui form" id="employeeForm" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-grid">
               {% for field in employeeForm %}
                   <div class="form-field">
                       {{ field.label_tag }}
                       {{ field }}
-                      {{ field.errors }}
+                      {% if field.errors %}
+                          <div class="ui pointing red basic label">
+                              {{ field.errors }}
+                          </div>
+                      {% endif %}
                   </div>
               {% endfor %}
           </div>
