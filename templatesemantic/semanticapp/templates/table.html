@@ -23,7 +23,7 @@
           </h3>
         </div>
         <div class="right floated column">
-          <button class="ui bg-orange-dark small right floated button" id="addEmployee">
+          <button class="ui bg-orange-dark small right floated button" id="addEmployee" data-tooltip="Register New Employee">
             <i class="icon user"></i>
             Add Employee
           </button>
@@ -76,7 +76,7 @@
                   <img src="{{ employee.profile_picture.url }}" class="ui mini rounded image">
                   <div class="content">
                     {{ employee.lastName }}, {{ employee.firstName }}, {{ employee.middleName|slice:":1" }}.
-                    <div class="sub header">Design
+                    <div class="sub header">{{employee.position}}
                   </div>
                 </div>
                 </h4>
@@ -84,8 +84,8 @@
               <td class={% if employee.status == "Active" %} "positive" {% else %} "negative" {% endif %} >{{ employee.status }}</td>
               <td>
                 <div class="ui small basic icon buttons">
-                  <button class="ui button"><i class="eye icon"></i></button>
-                  <button class="ui  button"><i class="trash icon"></i></button>
+                  <a href="{% url 'edit-employee' id=employee.id %}" class="ui button"><i class="eye icon"></i></a>
+                  <a href="{% url 'delete-employee' id=employee.id %}" class="ui button" onclick="return confirmDeletion(event);"><i class="trash icon"></i></a>
                 </div>
               </td>
             </tr>
@@ -106,19 +106,62 @@
     <div class="image content">
       <div class="description">
           <form method="POST" class="ui form" id="employeeForm" enctype="multipart/form-data">
+            <h4 class="ui dividing header">Personal Information</h4>
             {% csrf_token %}
             <div class="form-grid">
-              {% for field in employeeForm %}
-                  <div class="form-field">
-                      {{ field.label_tag }}
-                      {{ field }}
-                      {% if field.errors %}
-                          <div class="ui pointing red basic label">
-                              {{ field.errors }}
-                          </div>
-                      {% endif %}
+              <div class="field">
+
+                <label>Name:</label>
+                
+                <div class="three fields">
+                  <div class="field">
+                    {{ employeeForm.firstName }}
                   </div>
-              {% endfor %}
+                  <div class="field">
+                    {{ employeeForm.middleName }}
+                  </div>
+                  <div class="field">
+                    {{ employeeForm.lastName }}
+                  </div>
+                </div>
+                <div class="three fields">
+                  <div class="field">
+                    <label>{{ employeeForm.age.label_tag }}</label>
+                    {{ employeeForm.age }}
+                  </div>
+                
+                  <div class="field">
+                    <label>{{ employeeForm.birthDate.label_tag }}</label>
+                    {{ employeeForm.birthDate }}
+                  </div>
+                  <div class="field">
+                    <label>{{ employeeForm.gender.label_tag }}</label>
+                    {{ employeeForm.gender }}
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>{{ employeeForm.address.label_tag }}</label>
+                  {{ employeeForm.address }}
+                </div>
+
+              <h4 class="ui dividing header">Other Information</h4>
+              <div class="two fields">
+                <div class="field">
+                  <label>{{ employeeForm.position.label_tag }}</label>
+                  {{ employeeForm.position }}
+                </div>
+                <div class="field">
+                  <label>{{ employeeForm.status.label_tag }}</label>
+                  {{ employeeForm.status }}
+                </div>
+              </div>
+              <h4 class="ui dividing header">Upload Image</h4>
+                <div class="field">
+                    <img class="ui small centered circular image" id="profileImage" src="{% static 'img/semantic.png' %}" alt="Profile Picture">
+                    {{ employeeForm.profile_picture }}
+                </div>
+              </div>
           </div>
       </div>
     </div>
@@ -134,6 +177,7 @@
     </div>
     </form>
   </div>
+
 {% endblock  %}
 
 {% include '_footer.html' %}

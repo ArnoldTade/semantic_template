@@ -27,7 +27,6 @@ class EmployeeForm(forms.ModelForm):
                 {
                     "class": classes,
                     "placeholder": f"Enter your {field.label}",
-                    "style": "width: auto;",
                 }
             )
         self.fields["birthDate"].widget = forms.DateInput(
@@ -35,6 +34,5 @@ class EmployeeForm(forms.ModelForm):
                 "class": "ui input",
                 "placholder": "Enter date of birth",
                 "type": "date",
-                "style": "width: auto;",
             }
         )

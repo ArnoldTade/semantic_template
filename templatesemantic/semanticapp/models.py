@@ -7,6 +7,10 @@ class Employee(models.Model):
         ("Active", "ACTIVE"),
         ("Inactive", "INACTIVE"),
     ]
+    GENDER = [
+        ("MALE", "Male"),
+        ("FEMALE", "Female"),
+    ]
     profile_picture = models.ImageField(
         upload_to="img/", validators=[validate_image_size], null=True
     )
@@ -16,6 +20,7 @@ class Employee(models.Model):
     age = models.IntegerField()
     address = models.CharField(max_length=50)
     birthDate = models.DateField()
+    gender = models.CharField(max_length=20, choices=GENDER)
     position = models.CharField(max_length=50)
     status = models.CharField(max_length=20, choices=STATUS)
 

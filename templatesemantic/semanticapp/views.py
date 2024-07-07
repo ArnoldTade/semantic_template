@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import *
@@ -62,8 +62,6 @@ def table(request):
             employeeForm.save()
             messages.success(request, "Employee Added!")
             return redirect("table")
-        else:
-            messages.warning(request, employeeForm.errors)
 
     else:
         employeeForm = EmployeeForm()
@@ -92,3 +90,26 @@ def attendance(request):
         "title": title,
     }
     return render(request, "attendance.html", context)
+
+
+def delete_employee(request, id=None):
+    employee = Employee.objects.get(id=id)
+    employee.delete()
+    messages.success(request, "Employee Deleted!")
+    return redirect("table")
+
+
+def edit_employee(request, id=None):
+    employee = get_object_or_404(Employee, id=id)
+    employeeForm = EmployeeForm(request.POST, request.FILES, instance=employee)
+    if employeeForm.is_valid():
+        employeeForm.save()
+        messages.success(request, "Employee Updated!")
+        return redirect("edit-employee", id=employee.id)
+
+    employeeForm = EmployeeForm(instance=employee)
+    context = {
+        "title": "Table",
+        "employeeForm": employeeForm,
+    }
+    return render(request, "employee-profile.html", context)

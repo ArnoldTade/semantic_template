@@ -1,0 +1,82 @@
+{% include '_header.html' %}
+{% block content %}
+{% load static %}
+
+{% if messages %}
+<div class="messages z-3 position-absolute">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="ui segment very padded container container-table">
+    <form method="POST" class="ui form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h4 class="ui dividing header">Personal Information</h4>
+        <div class="field">
+           <img class="ui medium centered rounded image" id="profile-update-image" src="{% if not employeeForm.instance.profile_picture.url %} {% static 'img/semantic.png' %} {% else %} {{ employeeForm.instance.profile_picture.url }}  {% endif %}" alt="Profile Picture"> 
+            {{ employeeForm.profile_picture }}
+        </div>
+        <div class="field">
+            <label>Name:</label>
+            <div class="three fields">
+                <div class="field">
+                {{ employeeForm.firstName }}
+                </div>
+                <div class="field">
+                    {{ employeeForm.middleName }}
+                </div>
+                <div class="field">
+                    {{ employeeForm.lastName }}
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
+                  <label>{{ employeeForm.age.label_tag }}</label>
+                  {{ employeeForm.age }}
+                </div>
+              
+                <div class="field">
+                  <label>{{ employeeForm.birthDate.label_tag }}</label>
+                  {{ employeeForm.birthDate }}
+                </div>
+                <div class="field">
+                  <label>{{ employeeForm.gender.label_tag }}</label>
+                  {{ employeeForm.gender }}
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>{{ employeeForm.address.label_tag }}</label>
+                    {{ employeeForm.address }}
+                  </div>
+            </div>
+            <h4 class="ui dividing header">Other Information</h4>
+            <div class="two fields">
+                <div class="field">
+                <label>{{ employeeForm.position.label_tag }}</label>
+                {{ employeeForm.position }}
+                </div>
+                <div class="field">
+                <label>{{ employeeForm.status.label_tag }}</label>
+                {{ employeeForm.status }}
+                </div>
+            </div>
+        </div>
+        <hr class="ui dividing header">
+        <div class="actions">
+            <button type="submit" class="ui bg-orange-dark right icon button">
+              Save Changes
+            </button >
+        </div>
+    </form>
+</div>
+<br>
+
+
+{% endblock  %}
+{% include '_footer.html' %}

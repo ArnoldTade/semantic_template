@@ -1,3 +1,19 @@
+// PROFILE IMAGE //
+document.addEventListener('DOMContentLoaded', function () {
+    const profilePictureInput = document.getElementById('id_profile_picture');
+    const profileImage = document.getElementById('profileImage');
+
+    profilePictureInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                profileImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
 
 // ADD EMPLOYEE FORM //
 document.addEventListener('DOMContentLoaded', function () {
